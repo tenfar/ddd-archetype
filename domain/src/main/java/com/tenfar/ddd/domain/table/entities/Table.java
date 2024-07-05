@@ -20,7 +20,7 @@ public class Table {
     private final String id;
     private final int capacity;
     private List<Reservation> reservations;
-    private final EventB eventPublisher;
+    private final ApplicationEventPublisher eventPublisher;
     private String status;
 
     public Table(String id, int capacity, ApplicationEventPublisher eventPublisher) {
