@@ -1,8 +1,8 @@
 package com.tenfar.ddd.infrastructure.assembler;
 
-import com.tenfar.ddd.infrastructure.mapper.TableMapper;
 import com.tenfar.ddd.domain.table.entities.Table;
 import com.tenfar.ddd.dto.TableDTO;
+import com.tenfar.ddd.infrastructure.mapper.TableMapper;
 import org.springframework.stereotype.Component;
 
 @Component

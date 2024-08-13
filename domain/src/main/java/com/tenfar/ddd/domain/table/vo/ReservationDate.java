@@ -1,12 +1,16 @@
 package com.tenfar.ddd.domain.table.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReservationDate {
-    private final LocalDate date;
+    private LocalDate date;
 }

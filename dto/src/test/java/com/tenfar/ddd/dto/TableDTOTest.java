@@ -14,7 +14,7 @@ class TableDTOTest {
 
     @BeforeEach
     public void setUp() {
-         tableDTO = new TableDTO();
+        tableDTO = new TableDTO();
     }
 
     @AfterEach
@@ -26,20 +26,13 @@ class TableDTOTest {
     public void testSetAndGetId() {
         String id = UUID.randomUUID().toString();
         tableDTO.setId(id);
-        assertEquals(id,tableDTO.getId());
-    }
-
-    @Test
-    public void name() {
-        String name = UUID.randomUUID().toString();
-        tableDTO.setName(name);
-        assertEquals(name,tableDTO.getName());
+        assertEquals(id, tableDTO.getId());
     }
 
     @Test
     public void capacity() {
         int capacity = 5;
         tableDTO.setCapacity(capacity);
-        assertEquals(capacity,tableDTO.getCapacity());
+        assertEquals(capacity, tableDTO.getCapacity());
     }
 }

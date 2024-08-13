@@ -1,4 +1,3 @@
-
 package com.tenfar.ddd.infrastructure.messaging;
 
 import com.tenfar.ddd.domain.event.DomainEvent;

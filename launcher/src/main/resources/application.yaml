@@ -1,7 +1,6 @@
 server:
-  port: 8090
-  servlet:
-    context-path: "/"
+  port: 8080
+  context-path: "/table"
 spring:
   jackson:
     time-zone: GMT+8
@@ -9,3 +8,15 @@ spring:
   web:
     resources:
       static-locations: classpath:/static/,classpath:/views/
+
+swagger:
+  base-package: "com.tenfar.ddd.interfaces.controller"
+  enabled: true
+  host: http://localhost:8080
+  contact:
+    email: tenfar@gmail.com
+    name: Tenfar Lin
+    url:
+  description: 文檔
+  title: 文檔
+  version: 1.0.0

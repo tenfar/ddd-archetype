@@ -1,10 +1,14 @@
 package com.tenfar.ddd.domain.table.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 public class CustomerId {
-    private final String id;
+    private String id;
 }

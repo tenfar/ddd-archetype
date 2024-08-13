@@ -1,9 +1,12 @@
 package com.tenfar.ddd.domain.table.entities;
 
+import com.tenfar.ddd.common.enums.TableStatus;
+import com.tenfar.ddd.common.utils.UuidGenerator;
 import com.tenfar.ddd.domain.table.events.TableReservedEvent;
 import com.tenfar.ddd.domain.table.vo.CustomerId;
 import com.tenfar.ddd.domain.table.vo.ReservationDate;
 import com.tenfar.ddd.domain.table.vo.ReservationDuration;
+import com.tenfar.ddd.domain.table.vo.TableId;
 import lombok.Data;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.annotation.Id;
@@ -17,25 +20,27 @@ import java.util.Objects;
 @Document(collection = "tables")
 public class Table {
     @Id
-    private final String id;
+    private final TableId id;
     private final int capacity;
-    private List<Reservation> reservations;
     private final ApplicationEventPublisher eventPublisher;
-    private String status;
+    private final UuidGenerator uuidGenerator;
+    private List<Reservation> reservations;
+    private TableStatus status;
 
-    public Table(String id, int capacity, ApplicationEventPublisher eventPublisher) {
+    public Table(TableId id, int capacity, ApplicationEventPublisher eventPublisher, UuidGenerator uuidGenerator) {
         this.id = id;
         this.capacity = capacity;
-        this.status = "available";
+        this.status = TableStatus.AVAILABLE;
         this.reservations = new ArrayList<>();
         this.eventPublisher = eventPublisher;
+        this.uuidGenerator = uuidGenerator;
     }
 
     public void reserve(CustomerId customerId, ReservationDate reservationDate, ReservationDuration duration) {
-        if ("available".equals(status)) {
+        if (status == TableStatus.AVAILABLE) {
             reservations.add(new Reservation(customerId, reservationDate, duration));
-            status = "reserved";
-            eventPublisher.publishEvent(new TableReservedEvent(this, this.id, customerId, reservationDate, duration));
+            status = TableStatus.RESERVED;
+            eventPublisher.publishEvent(new TableReservedEvent(this, this.id, customerId, reservationDate, duration, uuidGenerator));
         } else {
             throw new IllegalStateException("Table is not available for reservation.");
         }
@@ -62,4 +67,3 @@ public class Table {
         return Objects.hash(id);
     }
 }
-
